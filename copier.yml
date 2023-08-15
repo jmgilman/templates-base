@@ -1,0 +1,16 @@
+# questions
+project_name:
+  type: str
+  help: What is the project name?
+
+repo_name:
+  type: str
+  help: What is the name of the repository?
+
+github_username:
+  type: str
+  help: What is your GitHub username?
+
+author_name:
+  type: str
+  help: What is your name?

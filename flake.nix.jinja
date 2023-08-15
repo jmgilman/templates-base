@@ -1,0 +1,34 @@
+{
+  description = "{{ project_name }}";
+  inputs = {
+    ## Nixpkgs ##
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    ## Std ##
+    std.url = "github:divnix/std";
+    std.inputs.nixpkgs.follows = "nixpkgs";
+    std.inputs.devshell.url = "github:numtide/devshell";
+    std.inputs.nixago.url = "github:nix-community/nixago";
+
+    ## Flake-compat ##
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+  };
+
+  outputs = {std, ...} @ inputs:
+    std.growOn
+    {
+      inherit inputs;
+      cellsFrom = ./nix;
+
+      cellBlocks = [
+        (std.blockTypes.devshells "devshells")
+        (std.blockTypes.nixago "configs")
+      ];
+    }
+    {
+      devShells = std.harvest inputs.self ["automation" "devshells"];
+    };
+}
