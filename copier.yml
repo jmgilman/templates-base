@@ -1,3 +1,7 @@
+exclude:
+  - copier.yml
+  - README.md
+
 # questions
 project_name:
   type: str
