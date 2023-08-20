@@ -27,10 +27,6 @@ cluttering a system with transient dependencies. Additionally, the dependencies
 provided by the development shell are locked, allowing reproducible environments
 for contributors.
 
-It's important to note that I _do not_ use Nix for packaging project code. This
-is typically handled by different tooling. The purpose of Nix is to solely
-provide an isolated, reproducible development environment.
-
 The development shell uses [Nixago] for automatically creating various dotfiles
 in the root of the repository. In particular, this base template ships with
 support for:
@@ -40,6 +36,20 @@ support for:
 - Using [treefmt] for formatting files
 
 Formatting and commit validation will automatically be ran as a pre-commit hook.
+
+### Nix and Compilers
+
+It's important to note that I _do not_ use Nix for packaging project code. This
+is typically handled by different tooling. The purpose of Nix is to solely
+provide an isolated, reproducible development environment.
+
+The primary reason this choice has been made is because, unless you're able to
+produce purely static binaries (which is not always gauranteed), any projects
+compiled with a compiler provided by Nix will automatically have dependencies
+on the Nix store. This means they no longer become easily distributable. Nix is
+great at providing a stable development environment, however, it's dependency on
+the Nix store makes distribution impractical. Therefore, I have chosen to use
+"native" compilers in my projects.
 
 
 [cc]: https://www.conventionalcommits.org/en/v1.0.0/
