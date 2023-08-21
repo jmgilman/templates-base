@@ -27,16 +27,6 @@ cluttering a system with transient dependencies. Additionally, the dependencies
 provided by the development shell are locked, allowing reproducible environments
 for contributors.
 
-The development shell uses [Nixago] for automatically creating various dotfiles
-in the root of the repository. In particular, this base template ships with
-support for:
-
-- Using [Conform] for validating commits adhere to [Conventional Commits][cc]
-- Using [Lefthook] for running pre-commit hooks
-- Using [treefmt] for formatting files
-
-Formatting and commit validation will automatically be ran as a pre-commit hook.
-
 ## Earthly
 
 An [Earthly] `Earthfile` is provided for building container images and providing
