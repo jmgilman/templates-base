@@ -1,8 +1,2 @@
 # Nix
 .direnv
-
-# nixago: ignore-linked-files
-/.conform.yaml
-/lefthook.yml
-/.prettierrc
-/treefmt.toml
